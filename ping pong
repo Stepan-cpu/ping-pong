@@ -1,0 +1,38 @@
+from pygame import *
+mixer.init()
+import time
+
+class GameSprite(sprite.Sprite):
+    def __init__(self, player_image, x, y, speed, w, h):
+        super().__init__()
+        self.image = transform.scale(image.load(player_image), (w, h))
+        self.speed = speed
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+    
+    def reset(self):
+        window.blit(self.image, (self.rect.x, self.rect.y))
+
+mixer.music.load('background music.mp3')
+mixer.music.play()
+window = display.set_mode((900, 800))
+display.set_caption("Ping-pong")
+background = transform.scale(image.load("fon_2.png"), (900, 800))
+clock = time.Clock()
+ball = GameSprite("ball.png", 100, 100, 10, 50, 50)
+wall = GameSprite('wall.png', 30, 100, 15, 30, 60)
+wall_2 = GameSprite("wall")
+game = True
+finish = False
+while game:
+    for e in event.get():
+        if e.type = QUIT:
+            game = False
+
+    if finish != True:
+        window.blit(background, (0, 0))
+        window.blit(ball, (50, 100))
+        clock.tick(60)
+
+    display.update()
